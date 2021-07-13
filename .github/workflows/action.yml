@@ -1,0 +1,30 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: |
+          export STAGE=build
+          bash ${{ github.workspace }}/run.sh
+      - run: echo "?? This job's status is ${{ job.status }}."
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: |
+          export STAGE=deploy
+          bash ${{ github.workspace }}/run.sh
+      - run: echo "?? This job's status is ${{ job.status }}."
+  publish-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: |
+          export STAGE=publish
+          bash ${{ github.workspace }}/run.sh
+      - run: echo "?? This job's status is ${{ job.status }}."
